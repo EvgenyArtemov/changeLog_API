@@ -1,3 +1,7 @@
+import * as dotenv from 'dotenv';
+dotenv.config();
+// make our env variables available
+
 import app from './server';
 
 app.listen(3001, () => {
