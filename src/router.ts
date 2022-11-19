@@ -1,10 +1,14 @@
 import { Router } from 'express';
+import { resolve } from 'path';
 
 const router = Router();
 
 
 // PRODUCT
-router.get('/product', () => {});
+router.get('/product', (req, res) => {
+  res.send('sjsjsj');
+  res.end();
+});
 router.get('/product/:id', () => {});
 router.put('/product/:id', () => {});
 router.post('/product/', () => {});

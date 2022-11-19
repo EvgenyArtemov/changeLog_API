@@ -1,7 +1,7 @@
 import express from 'express';
 import router from './router';
 import morgan from 'morgan';
-import { protect }from './auth';
+import { protect }from './modules/auth';
 
 const app = express();
 
