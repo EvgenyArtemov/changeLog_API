@@ -9,7 +9,7 @@ const secret = process.env.JWT_SECRET as Secret;
 // for sign in
 export const comparePasswords = (pass: string, hash: string): Promise<boolean> => bcrypt.compare(pass, hash);
 
-export const hashPassword = (pass: string) => bcrypt.hash(pass, 42);
+export const hashPassword = (pass: string) => bcrypt.hash(pass, 4);
 export const createJWT = ({ id, username }: {id: string, username: string }) => jwt.sign({ id, username }, secret);
 
 export const protect = (req: Request&{user?: any}, res: Response, next: NextFunction) => {
