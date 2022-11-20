@@ -1,4 +1,4 @@
-import prisma from '../modules/db';
+import prisma from '../../db';
 import { hashPassword, createJWT, comparePasswords } from '../modules/auth';
 import { Request, Response } from 'express';
 import { ChildProcess } from 'child_process';
