@@ -10,6 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum UPDATE_STATUS {
+  IN_PROGRESS
+  SHIPPED
+  DEPRECATED
+}
+
 model User {
   id        String    @id @default(uuid())
   createdAt DateTime  @default(now())
@@ -27,13 +33,9 @@ model Product {
   belongsToId String
   belongsTo   User   @relation(fields: [belongsToId], references: [id])
   updates Update[]
+  @@unique([id, belongsToId])
 }
 
-enum UPDATE_STATUS {
-  IN_PROGRESS
-  SHIPPED
-  DEPRECATED
-}
 
 model Update {
   id        String    @id @default(uuid())
