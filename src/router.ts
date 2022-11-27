@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { Router } from 'express';
 import { body } from 'express-validator';
 import { createProduct, getProducts, updateProduct, deleteProduct, getProduct } from './handlers/product';
+import { getUpdates, updateUpdate, createUpdate, deleteUpdate, getUpdate } from './handlers/update';
 import { handleInputErrors } from './modules/middleware';
 
 const router = Router();
@@ -37,12 +39,11 @@ router.post('/product/', body('name').isString(), createProduct);
 router.delete('/product/:id', deleteProduct);
 
 // UPDATE
-router.get('/update', () => {});
-router.get('/update/:id', () => {});
-router.put('/update/:id', updateWithIdValidation, () => {}
-);
-router.post('/update/', updateValidation, () => {});
-router.delete('/update/:id', () => {});
+router.get('/update', getUpdates);
+router.get('/update/:id', getUpdate);
+router.put('/update/:id', updateWithIdValidation, updateUpdate);
+router.post('/update/', updateValidation, createUpdate);
+router.delete('/update/:id', deleteUpdate);
 
 // UPDATE POINT
 router.get('/updatepoint', () => {});
