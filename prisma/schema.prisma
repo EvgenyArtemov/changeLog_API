@@ -22,6 +22,7 @@ model User {
   username  String    @unique
   password  String
   Product   Product[]
+  update Update[]
 }
 
 model Product {
@@ -49,6 +50,8 @@ model Update {
 
   productId String
   product Product @relation(fields: [productId], references: [id])
+  userId String
+  user User @relation(fields: [userId], references: [id])
   updatePoints UpdatePoint[]
 }
 
