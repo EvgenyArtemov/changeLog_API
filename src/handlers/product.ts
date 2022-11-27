@@ -1,9 +1,15 @@
 import { Request, Response } from 'express';
 import prisma from '../../db';
 
+// we put information about current user after checking the token
+interface UserRequest extends Request {
+  user: {
+    id: string
+  }
+}
 
 // Get All
-export const getProducts = async (req: Request, res: Response) => {
+export const getProducts = async (req: UserRequest, res: Response) => {
   const user = await prisma.user.findUnique({
     where: {
       id: req.user.id
@@ -17,7 +23,7 @@ export const getProducts = async (req: Request, res: Response) => {
   })
 };
 
-export const getProduct = async (req: Request, res: Response) => {
+export const getProduct = async (req: UserRequest, res: Response) => {
   const product = await prisma.product.findFirst({
     where: {
       id: req.params.id,
@@ -27,7 +33,7 @@ export const getProduct = async (req: Request, res: Response) => {
   res.json({ data: product });
 };
 
-export const createProduct = async (req: Request, res: Response) => {
+export const createProduct = async (req: UserRequest, res: Response) => {
   const product = await prisma.product.create({
     data: {
       name: req.body.name,
@@ -38,7 +44,7 @@ export const createProduct = async (req: Request, res: Response) => {
   res.json({ data: product });
 };
 
-export const updateProduct = async (req: Request, res: Response) => {
+export const updateProduct = async (req: UserRequest, res: Response) => {
   const updated = await prisma.product.update({
     where: {
       id_belongsToId: {
@@ -53,7 +59,7 @@ export const updateProduct = async (req: Request, res: Response) => {
   res.json({ data: updated });
 };
 
-export const deleteProduct = async (req: Request, res: Response) => {
+export const deleteProduct = async (req: UserRequest, res: Response) => {
   const deleted = await prisma.product.delete({
     where: {
       id_belongsToId: {
