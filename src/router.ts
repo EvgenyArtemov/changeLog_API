@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
+import { createProduct, getProducts, updateProduct, deleteProduct, getProduct } from './handlers/product';
 import { handleInputErrors } from './modules/middleware';
 
 const router = Router();
@@ -29,16 +30,11 @@ const updatePointValidation = [
 ]; 
 
 // PRODUCT
-router.get('/product', (req, res) => {
-  res.send('sjsjsj');
-  res.end();
-});
-router.get('/product/:id', () => {});
-router.put('/product/:id', body('name').isString(), handleInputErrors, (req,res) => {
-  
-});
-router.post('/product/', body('name').isString(), () => {});
-router.delete('/product/:id', () => {});
+router.get('/product', getProducts);
+router.get('/product/:id', getProduct);
+router.put('/product/:id', body('name').isString(), handleInputErrors, updateProduct);
+router.post('/product/', body('name').isString(), createProduct);
+router.delete('/product/:id', deleteProduct);
 
 // UPDATE
 router.get('/update', () => {});
