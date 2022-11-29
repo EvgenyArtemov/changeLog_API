@@ -3,7 +3,8 @@ dotenv.config();
 // make our env variables available
 
 import app from './server';
+import config from './config/index';
 
-app.listen(3001, () => {
-  console.log('server is runnig on port 3001')
+app.listen(config.PORT, () => {
+  console.log(`server is runnig on port ${config.PORT}`)
 })
